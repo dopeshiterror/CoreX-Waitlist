@@ -4,3 +4,4 @@ description: >- # this means newlines are ignored until double space
 baseurl: "" # leave empty for custom domains
 url: "https://www.corexwear.se"
 theme: minima
+permalink: pretty
