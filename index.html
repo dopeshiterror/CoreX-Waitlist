@@ -20,16 +20,14 @@
     }
 
     header {
-      padding: 2rem;
+      padding: 1.5rem;
       text-align: center;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
     }
 
-    header span {
-      color: #bbb;
-      font-weight: normal;
+    header img {
+      max-width: 160px;
+      height: auto;
+      cursor: pointer;
     }
 
     .hero {
@@ -147,6 +145,91 @@
       line-height: 1.7;
     }
 
+    /* Product Section */
+    .product-preview {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch; /* 🔥 make columns equal height */
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .product-left {
+      max-width: 380px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .product-left img {
+      max-width: 280px;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .product-left p {
+      flex-grow: 1; /* makes height match highlight box */
+    }
+
+    .product-right {
+      max-width: 300px;
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .highlight-box {
+      background: #111;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      text-align: left;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .highlight-box h3 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      background: linear-gradient(90deg, #fff, #888);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .highlight-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .highlight-box ul li {
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+      color: #ccc;
+    }
+
+    .highlight-box button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      background: #fff;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .highlight-box button:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+
     footer {
       padding: 2rem;
       text-align: center;
@@ -157,15 +240,15 @@
 </head>
 <body>
   <header>
-    CoreX <span>| Premium Gym Apparel</span>
+    <a href="#top"><img src="corexlogo.png" alt="CoreX Logo"></a>
   </header>
 
-  <div class="hero">
+  <div class="hero" id="top">
     <h1>Bär din grind. Nöj dig inte.</h1>
     <p>CoreX är byggt för de som vägrar vara average.  
     Gå med i waitlisten och bli först med att få tillgång till våra drops.</p>
 
-    <form class="waitlist-form" action="https://formsubmit.co/corexwear.se@gmail.com" method="POST">
+    <form class="waitlist-form" action="https://formsubmit.co/corexwear.se@gmail.com" method="POST" id="waitlist">
       <div class="form-group">
         <input type="text" name="name" id="name" placeholder=" " required>
         <label for="name">Namn</label>
@@ -196,6 +279,36 @@
       premium gymkläder till konkurrenskraftiga priser.  
       Plagg för de som kämpar hårdare, de som aldrig nöjer sig.
     </p>
+  </section>
+
+  <section id="product">
+    <h2>Produkt Preview</h2>
+    <div class="product-preview">
+      <div class="product-left">
+        <img src="preview.png" alt="CoreX Performance Tee">
+        <h3>CoreX Performance Tee</h3>
+        <p>
+          Tillverkad av högkvalitativ bomull.   
+          <br><br>
+          <em>Snart tillgänglig. Gå med i waitlisten.</em>
+        </p>
+      </div>
+
+      <div class="product-right">
+        <div class="highlight-box">
+          <h3>Varför CoreX?</h3>
+          <ul>
+            <li>⭐ Premiumkvalitet</li>
+            <li>🎯 Minimalistisk design</li>
+            <li>💪 Gjord för grind</li>
+            <li>🔥 Prisvärd exklusivitet</li>
+          </ul>
+          <button onclick="document.getElementById('waitlist').scrollIntoView({behavior: 'smooth'})">
+            Gå med i waitlisten
+          </button>
+        </div>
+      </div>
+    </div>
   </section>
 
   <footer>
