@@ -89,14 +89,12 @@
       <p class="reveal">Get early access, discount codes, and the free launch gift if you’re quick. We send one short email — no spam.</p>
 
       <div class="wait-area reveal" id="waitArea">
-        <!-- CLASSIC Formsubmit POST (your original script) -->
-        <!-- It will redirect to the _next URL after submit (Formsubmit will send to corexwear.se@gmail.com) -->
+        <!-- CLASSIC Formsubmit POST -->
         <form class="form" id="waitForm"
               action="https://formsubmit.co/corexwear.se@gmail.com"
               method="POST"
               autocomplete="on"
               onsubmit="return onSubmitForm();">
-          <!-- keep hidden fields to match your old script -->
           <input type="hidden" name="_subject" value="Corex waitlist signup">
           <input type="hidden" name="_next" value="https://corexwear.se/thanks/thankyou.html">
           <input type="hidden" name="_captcha" value="false">
@@ -111,7 +109,6 @@
 
           <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
             <button type="submit" class="btn">Join Waitlist</button>
-            <button type="button" class="btn secondary" id="demoAdd">Quick Add (demo)</button>
           </div>
         </form>
 
@@ -201,21 +198,13 @@ function onSubmitForm(){
     const list = JSON.parse(localStorage.getItem('corex_waitlist') || '[]');
     list.push({name,email,ts:Date.now()});
     localStorage.setItem('corex_waitlist', JSON.stringify(list));
-    // returning true allows the browser to perform the form POST to Formsubmit (which will redirect to _next)
+    // returning true lets the browser perform the form POST to Formsubmit (which will redirect to _next)
     return true;
   } catch (e) {
     console.warn('Save to localStorage failed', e);
     return true; // still allow the form to submit even if storage fails
   }
 }
-
-/* Demo quick add */
-document.getElementById('demoAdd').addEventListener('click', () => {
-  const list = JSON.parse(localStorage.getItem('corex_waitlist') || '[]');
-  list.push({name:'Demo User',email:`demo+${Date.now()}@corex.test`,ts:Date.now()});
-  localStorage.setItem('corex_waitlist', JSON.stringify(list));
-  showModal();
-});
 
 /* CTA actions */
 document.getElementById('goWait').addEventListener('click', () => {
