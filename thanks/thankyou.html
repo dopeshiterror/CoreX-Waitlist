@@ -48,16 +48,6 @@
   }
   .sub{ color:var(--muted); margin-bottom:16px; font-size:1.05rem; max-width:54ch; }
 
-  .stats{
-    display:flex; gap:12px; margin-top:16px; flex-wrap:wrap;
-  }
-  .stat{
-    background:var(--glass); border-radius:12px; padding:12px 14px; border:1px solid rgba(255,255,255,.04);
-    min-width:120px; text-align:center;
-  }
-  .stat b{ display:block; font-size:1.15rem; }
-
-  /* right column */
   .right{
     display:flex; flex-direction:column; gap:12px; align-items:center;
   }
@@ -98,22 +88,11 @@
     <div class="content">
       <div class="left">
         <h1 id="thanksTitle">You're on the list — welcome to Corex 👊</h1>
-        <p class="sub reveal" id="greeting">Thanks for joining the waitlist. We’ll send an email when we drop — and first 200 get a free launch gift.</p>
-
-        <div class="stats reveal" id="statsRow">
-          <div class="stat">
-            <small>Current spots saved</small>
-            <b id="count">—</b>
-          </div>
-          <div class="stat">
-            <small>Last sign-up</small>
-            <b id="lastName">—</b>
-          </div>
-        </div>
+        <p class="sub reveal" id="greeting">Thanks for joining the waitlist. We’ll email you when we drop — and the first 200 get a free launch gift.</p>
 
         <div class="reveal" id="moreCopy" style="margin-top:18px">
           <p style="color:var(--muted); max-width:60ch;">
-            We built Corex because quality shouldn’t be locked behind insane markups. Now you’re part of the crew — expect a short, friendly email from us soon with next steps.
+            Quality shouldn’t cost the Earth. Welcome to the crew — expect a short, friendly email from us soon with next steps.
             Keep an eye on your inbox (and spam folder just in case).
           </p>
         </div>
@@ -133,12 +112,11 @@
 
       <div class="right">
         <div class="shirt reveal" id="shirtWrap" aria-hidden="false">
-          <img src="https://via.placeholder.com/720x720.png?text=Corex+T-shirt+Mockup" alt="Corex T-shirt">
+          <img src="preview.png" alt="Corex T-shirt">
         </div>
 
         <div class="actions reveal">
           <button class="btn" id="backBtn">Back to Home</button>
-          <button class="btn ghost" id="manageBtn">Manage subscription</button>
         </div>
       </div>
     </div>
@@ -148,7 +126,7 @@
   <canvas class="confetti" id="confettiCanvas" aria-hidden="true"></canvas>
 
 <script>
-/* ====== Utils & accessibility ====== */
+/* ====== Accessibility: reduced motion ====== */
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ====== Reveal on load ====== */
@@ -156,43 +134,14 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
   setTimeout(() => el.classList.add('visible'), 120 + i * 110);
 });
 
-/* ====== LocalStorage count & last name (if available) ====== */
-(function updateLocalStats(){
-  try {
-    const list = JSON.parse(localStorage.getItem('corex_waitlist') || '[]');
-    const countEl = document.getElementById('count');
-    const lastNameEl = document.getElementById('lastName');
-    if (list && list.length) {
-      countEl.textContent = list.length;
-      const last = list[list.length - 1];
-      lastNameEl.textContent = last && last.name ? last.name : last.email;
-      // personalize greeting if name exists
-      const greeting = document.getElementById('greeting');
-      if (last && last.name) greeting.textContent = `Thanks ${last.name} — you're locked in. We'll email shortly.`;
-    } else {
-      countEl.textContent = '—';
-      lastNameEl.textContent = '—';
-    }
-  } catch (e) {
-    console.warn('Could not read localStorage', e);
-    document.getElementById('count').textContent = '—';
-    document.getElementById('lastName').textContent = '—';
-  }
-})();
-
-/* ====== Back / Manage buttons ====== */
+/* ====== Back button ====== */
 document.getElementById('backBtn').addEventListener('click', () => {
-  // try to go back — if not, go to home
   if (document.referrer) {
     history.back();
     setTimeout(() => { if (location.pathname.endsWith('thankyou.html')) location.href = '/'; }, 600);
   } else {
     location.href = '/';
   }
-});
-document.getElementById('manageBtn').addEventListener('click', () => {
-  // open mailto to let user manage subscription (since we use Formsubmit)
-  window.location.href = 'mailto:corexwear.se@gmail.com?subject=Manage%20Corex%20Waitlist&body=Hi%20Corex%20team%2C%0A%0AI%20want%20to%20manage%20my%20waitlist%20signup.%20My%20email%20is%20...%0A%0AThanks%2C';
 });
 
 /* ====== Copy link & Tweet share ====== */
