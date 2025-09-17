@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rarin — Presentation</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: "Poppins", "Inter", system-ui, -apple-system, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg,#07070a,#141416);
+      color:#fff;
+      overflow:hidden;
+    }
+    .container{position:relative;height:100vh;width:100vw}
+
+    .slide{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:4rem 2rem;
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(6px) scale(.997);
+      transition:opacity .45s cubic-bezier(.2,.9,.3,1), transform .45s cubic-bezier(.2,.9,.3,1);
+    }
+    .slide.active{
+      opacity:1;
+      pointer-events:auto;
+      transform:none;
+    }
+
+    h1,h2{
+      font-weight:700;
+      margin-bottom:1.25rem;
+      background:linear-gradient(90deg,#fff,#ced2ff,#fff);
+      background-size:200% auto;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:shine 3.6s linear infinite;
+    }
+    h1{font-size:clamp(2.2rem,6vw,3.2rem)}
+    h2{font-size:clamp(1.8rem,5vw,2.6rem)}
+    @keyframes shine{ to { background-position:200% center } }
+
+    ul{list-style:none;padding:0;margin-top:.6rem;max-width:700px}
+    li{
+      color:#cfcfe1;
+      font-size:clamp(1.05rem,2.3vw,1.45rem);
+      margin:0.6rem 0;
+      opacity:0;
+      transform:translateY(18px);
+    }
+    li.animate{
+      animation: slideIn .56s cubic-bezier(.2,.9,.3,1) forwards;
+      animation-delay: var(--d,0s);
+    }
+    @keyframes slideIn{
+      from{ opacity:0; transform:translateY(18px) }
+      to  { opacity:1; transform:translateY(0) }
+    }
+
+    footer{
+      position:fixed; left:0; right:0; bottom:14px;
+      text-align:center; color:#9a9aa8; font-size:.92rem;
+      pointer-events:none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Slide 1 -->
+    <section class="slide active">
+      <h1>Rarin</h1>
+      <ul>
+        <li>American melodic rapper</li>
+        <li>Broke out in the early 2020s</li>
+        <li>Mix of emotional + energetic music</li>
+      </ul>
+    </section>
+
+    <!-- Slide 2 -->
+    <section class="slide">
+      <h2>Early Life & Rise</h2>
+      <ul>
+        <li>Started releasing music on SoundCloud and YouTube</li>
+        <li>Built momentum through consistent singles</li>
+        <li>Connected with fans through relatable lyrics</li>
+      </ul>
+    </section>
+
+    <!-- Slide 3 -->
+    <section class="slide">
+      <h2>Breakout Tracks</h2>
+      <ul>
+        <li>“GTA” — viral hit, millions of streams</li>
+        <li>“Toxic Ends” — fan favorite</li>
+        <li>“So What!” — energetic and hype</li>
+      </ul>
+    </section>
+
+    <!-- Slide 4 -->
+    <section class="slide">
+      <h2>Notable Collaborations</h2>
+      <ul>
+        <li>Worked with <strong>Darius King</strong></li>
+        <li>Featured alongside underground rappers</li>
+        <li>Helps spotlight rising artists</li>
+      </ul>
+    </section>
+
+    <!-- Slide 5 -->
+    <section class="slide">
+      <h2>Style & Themes</h2>
+      <ul>
+        <li>Melodic rap with catchy hooks</li>
+        <li>Focus on ambition, struggle, and lifestyle</li>
+        <li>Energetic delivery over modern beats</li>
+      </ul>
+    </section>
+
+    <!-- Slide 6 -->
+    <section class="slide">
+      <h2>Impact & Popularity</h2>
+      <ul>
+        <li>Millions of plays on Spotify & YouTube</li>
+        <li>Growing Gen-Z fanbase</li>
+        <li>Seen as part of the next wave of internet rap</li>
+      </ul>
+    </section>
+
+    <!-- Slide 7 -->
+    <section class="slide">
+      <h2>Closing</h2>
+      <ul>
+        <li>Rarin = breakout internet artist</li>
+        <li>Best known for viral tracks like “GTA”</li>
+        <li>Collaborative, modern, and rising fast</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <footer>Press → or tap to continue — ← for back</footer>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let current = slides.findIndex(s => s.classList.contains('active'));
+  if (current < 0) current = 0;
+
+  function showSlide(index){
+    const idx = ((index % slides.length) + slides.length) % slides.length;
+    if (idx === current) return;
+    slides[current].classList.remove('active');
+    slides[idx].classList.add('active');
+    current = idx;
+    animateBullets(slides[current]);
+  }
+
+  function animateBullets(slide){
+    const items = Array.from(slide.querySelectorAll('li'));
+    items.forEach(li => {
+      li.classList.remove('animate');
+      li.style.removeProperty('--d');
+      void li.offsetWidth;
+    });
+    items.forEach((li,i) => {
+      li.style.setProperty('--d', (i*0.14)+'s');
+      requestAnimationFrame(() => li.classList.add('animate'));
+    });
+  }
+  animateBullets(slides[current]);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') showSlide(current+1);
+    if (e.key === 'ArrowLeft') showSlide(current-1);
+  });
+
+  document.addEventListener('click', () => showSlide(current+1));
+})();
+</script>
+</body>
+</html>
