@@ -55,20 +55,18 @@
       margin:0.6rem 0;
       opacity:0;
       transform:translateY(18px);
+      transition: all .3s ease;
     }
-    li.animate{
-      animation: slideIn .56s cubic-bezier(.2,.9,.3,1) forwards;
-      animation-delay: var(--d,0s);
-    }
-    @keyframes slideIn{
-      from{ opacity:0; transform:translateY(18px) }
-      to  { opacity:1; transform:translateY(0) }
-    }
+    li.visible{opacity:1; transform:translateY(0)}
+    li.current{color:#fff; font-weight:600; text-shadow:0 0 8px #8a8aff}
 
     footer{
       position:fixed; left:0; right:0; bottom:14px;
       text-align:center; color:#9a9aa8; font-size:.92rem;
-      pointer-events:none;
+    }
+    .progress{
+      position:fixed; bottom:0; left:0; height:4px; background:#8a8aff;
+      transition:width .3s ease;
     }
   </style>
 </head>
@@ -147,43 +145,54 @@
 
   </div>
 
-  <footer>Press → or tap to continue — ← for back</footer>
+  <div class="progress" id="progress"></div>
+  <footer id="progressText">Slide 1 of 7 — Press → or tap</footer>
 
 <script>
 (function(){
   const slides = Array.from(document.querySelectorAll('.slide'));
-  let current = slides.findIndex(s => s.classList.contains('active'));
-  if (current < 0) current = 0;
+  let current = 0;
+  let bulletIndex = 0;
+
+  function updateProgress(){
+    document.getElementById("progressText").textContent = `Slide ${current+1} of ${slides.length}`;
+    document.getElementById("progress").style.width = ((current+1)/slides.length*100)+"%";
+  }
 
   function showSlide(index){
-    const idx = ((index % slides.length) + slides.length) % slides.length;
-    if (idx === current) return;
-    slides[current].classList.remove('active');
-    slides[idx].classList.add('active');
-    current = idx;
-    animateBullets(slides[current]);
+    if(index<0 || index>=slides.length) return;
+    slides[current].classList.remove("active");
+    current = index;
+    slides[current].classList.add("active");
+    bulletIndex = 0;
+    revealBullet();
+    updateProgress();
   }
 
-  function animateBullets(slide){
-    const items = Array.from(slide.querySelectorAll('li'));
-    items.forEach(li => {
-      li.classList.remove('animate');
-      li.style.removeProperty('--d');
-      void li.offsetWidth;
-    });
-    items.forEach((li,i) => {
-      li.style.setProperty('--d', (i*0.14)+'s');
-      requestAnimationFrame(() => li.classList.add('animate'));
-    });
+  function revealBullet(){
+    const bullets = slides[current].querySelectorAll("li");
+    if(bulletIndex < bullets.length){
+      bullets[bulletIndex].classList.add("visible","current");
+      if(bulletIndex>0) bullets[bulletIndex-1].classList.remove("current");
+      bulletIndex++;
+    } else {
+      showSlide(current+1);
+    }
   }
-  animateBullets(slides[current]);
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') showSlide(current+1);
-    if (e.key === 'ArrowLeft') showSlide(current-1);
+  function prevSlide(){
+    showSlide(current-1);
+  }
+
+  document.addEventListener("keydown",e=>{
+    if(e.key==="ArrowRight"||e.key===" "){e.preventDefault();revealBullet();}
+    if(e.key==="ArrowLeft"){e.preventDefault();prevSlide();}
   });
 
-  document.addEventListener('click', () => showSlide(current+1));
+  document.addEventListener("click",()=>revealBullet());
+
+  // init
+  updateProgress();
 })();
 </script>
 </body>
