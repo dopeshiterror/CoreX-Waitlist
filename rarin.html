@@ -55,10 +55,13 @@
       margin:0.6rem 0;
       opacity:0;
       transform:translateY(18px);
-      transition: all .3s ease;
     }
-    li.visible{opacity:1; transform:translateY(0)}
-    li.current{color:#fff; font-weight:600; text-shadow:0 0 8px #8a8aff}
+    li.visible{
+      opacity:1; transform:translateY(0)
+    }
+    li.current{
+      color:#fff; font-weight:600; text-shadow:0 0 8px #8a8aff
+    }
 
     footer{
       position:fixed; left:0; right:0; bottom:14px;
@@ -79,7 +82,7 @@
       <ul>
         <li>American melodic rapper</li>
         <li>Broke out in the early 2020s</li>
-        <li>Mix of emotional + energetic music</li>
+        <li>Known for emotional & energetic music</li>
       </ul>
     </section>
 
@@ -87,7 +90,7 @@
     <section class="slide">
       <h2>Early Life & Rise</h2>
       <ul>
-        <li>Started releasing music on SoundCloud and YouTube</li>
+        <li>Started on SoundCloud and YouTube</li>
         <li>Built momentum through consistent singles</li>
         <li>Connected with fans through relatable lyrics</li>
       </ul>
@@ -97,9 +100,9 @@
     <section class="slide">
       <h2>Breakout Tracks</h2>
       <ul>
-        <li>“GTA” — viral hit, millions of streams</li>
-        <li>“Toxic Ends” — fan favorite</li>
-        <li>“So What!” — energetic and hype</li>
+        <li>“GTA” — viral hit with millions of streams</li>
+        <li>“Toxic Ends” — fan favorite, emotional tone</li>
+        <li>“So What!” — hype and energetic</li>
       </ul>
     </section>
 
@@ -108,8 +111,8 @@
       <h2>Notable Collaborations</h2>
       <ul>
         <li>Worked with <strong>Darius King</strong></li>
-        <li>Featured alongside underground rappers</li>
-        <li>Helps spotlight rising artists</li>
+        <li>Featured with other underground artists</li>
+        <li>Helps spotlight rising talent</li>
       </ul>
     </section>
 
@@ -119,7 +122,7 @@
       <ul>
         <li>Melodic rap with catchy hooks</li>
         <li>Focus on ambition, struggle, and lifestyle</li>
-        <li>Energetic delivery over modern beats</li>
+        <li>Energetic delivery with modern beats</li>
       </ul>
     </section>
 
@@ -127,13 +130,24 @@
     <section class="slide">
       <h2>Impact & Popularity</h2>
       <ul>
-        <li>Millions of plays on Spotify & YouTube</li>
-        <li>Growing Gen-Z fanbase</li>
-        <li>Seen as part of the next wave of internet rap</li>
+        <li>Millions of streams on Spotify & YouTube</li>
+        <li>Strong Gen-Z fanbase</li>
+        <li>Recognized as part of the new wave of internet rap</li>
       </ul>
     </section>
 
-    <!-- Slide 7 -->
+    <!-- Slide 7: Polar Music Prize -->
+    <section class="slide">
+      <h2>Why Polar Music Prize?</h2>
+      <ul>
+        <li>Celebrates artists with global impact</li>
+        <li>Rarin inspires young listeners worldwide</li>
+        <li>Brings new energy to melodic rap</li>
+        <li>Promotes creativity and cultural influence</li>
+      </ul>
+    </section>
+
+    <!-- Slide 8: Closing -->
     <section class="slide">
       <h2>Closing</h2>
       <ul>
@@ -143,10 +157,21 @@
       </ul>
     </section>
 
+    <!-- Slide 9: Sources -->
+    <section class="slide">
+      <h2>Sources</h2>
+      <ul>
+        <li>Spotify Artist Profile — Rarin</li>
+        <li>YouTube Channel — Rarin Official</li>
+        <li>Genius Lyrics — “GTA”, “Toxic Ends”</li>
+        <li>Interviews & fan articles (2021–2023)</li>
+      </ul>
+    </section>
+
   </div>
 
   <div class="progress" id="progress"></div>
-  <footer id="progressText">Slide 1 of 7 — Press → or tap</footer>
+  <footer id="progressText">Slide 1 of 9 — Press → or tap</footer>
 
 <script>
 (function(){
@@ -180,19 +205,16 @@
     }
   }
 
-  function prevSlide(){
-    showSlide(current-1);
-  }
-
   document.addEventListener("keydown",e=>{
-    if(e.key==="ArrowRight"||e.key===" "){e.preventDefault();revealBullet();}
-    if(e.key==="ArrowLeft"){e.preventDefault();prevSlide();}
+    if(e.key==="ArrowRight"||e.key===" "){e.preventDefault(); revealBullet();}
+    if(e.key==="ArrowLeft"){e.preventDefault(); showSlide(current-1);}
   });
 
   document.addEventListener("click",()=>revealBullet());
 
   // init
   updateProgress();
+  revealBullet();  
 })();
 </script>
 </body>
