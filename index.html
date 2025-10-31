@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Core-X — Hustle over Hype</title>
+<title>Coreˣ — Hustle over Hype</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -17,18 +17,20 @@ a{text-decoration:none;color:inherit;}
 button{cursor:pointer;border:none;font-family:inherit;}
 
 /* Navbar */
-nav{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;z-index:100;background:rgba(11,11,16,0.6);backdrop-filter:blur(10px);}
-nav .logo{font-weight:900;font-size:1.4rem;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+nav{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;z-index:100;background:rgba(11,11,16,0.6);backdrop-filter:blur(12px);}
+nav .logo{font-weight:900;font-size:1.8rem;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+nav .logo .sup{font-size:0.6em;vertical-align:super;line-height:1;}
 nav ul{display:flex;gap:24px;list-style:none;}
 nav ul li a{font-weight:600;transition:color var(--transition);}
 nav ul li a:hover{color:var(--accent);}
 
 /* Hero */
-header{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0b0b10;}
-.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.2;}
+header{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.15;}
 .hero-content{position:relative;z-index:2;max-width:1200px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:0 28px;}
-.hero-text h1{font-size:clamp(2.8rem,6vw,4rem);font-weight:900;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.05;}
-.hero-text h2{font-size:1.6rem;font-weight:700;margin:12px 0;color:var(--fg);}
+.hero-text h1{font-size:clamp(3rem,6vw,4rem);font-weight:900;line-height:1.05;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-text h2{font-size:2.2rem;font-weight:900;margin:12px 0;color:var(--fg);}
+.hero-text h2 .sup{font-size:0.6em;vertical-align:super;line-height:1;}
 .hero-text p{margin-top:1rem;color:var(--muted);font-size:1.05rem;max-width:44ch;}
 .cta-row{display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;}
 .btn{padding:16px 28px;border-radius:999px;font-weight:700;font-size:1rem;transition:all var(--transition);}
@@ -37,136 +39,142 @@ header{position:relative;min-height:100vh;display:flex;align-items:center;justif
 .btn-secondary{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--fg);}
 
 /* Hero Product */
-.hero-product{position:relative;width:420px;max-width:86vw;margin:auto;perspective:1200px;}
+.hero-product{position:relative;width:420px;max-width:86vw;margin:auto;perspective:1200px;display:flex;justify-content:center;align-items:center;}
 .shirt{width:100%;border-radius:16px;transform-style:preserve-3d;transition:transform 0.16s ease;}
 .meta-tag{position:absolute;top:16px;left:16px;background:var(--glass);padding:.45rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.04);font-weight:600;font-size:.85rem;color:var(--muted);}
 
 /* Sections */
 section{padding:80px 28px;max-width:1200px;margin:0 auto;position:relative;}
 section h2{font-size:2rem;font-weight:900;margin-bottom:24px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-section p{color:var(--muted);font-size:1rem;max-width:50ch;line-height:1.6;}
+section p{color:var(--muted);font-size:1.05rem;line-height:1.6;max-width:60ch;}
 
-/* Benefits */
-.benefits{display:flex;gap:20px;flex-wrap:wrap;margin-top:32px;}
-.card{flex:1 1 240px;min-width:220px;background:var(--glass);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,.05);backdrop-filter:blur(10px);transition:transform 0.36s cubic-bezier(.2,.9,.3,1),box-shadow 0.36s;}
-.card:hover{transform:translateY(-8px);box-shadow:0 18px 45px rgba(11,11,16,.55);}
-.card h3{font-weight:700;margin-bottom:.5rem;}
-.card p{color:var(--muted);}
+/* Benefits Cards */
+.benefits{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;}
+.card{flex:1 1 280px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,.06);backdrop-filter:blur(12px);transition:transform 0.36s cubic-bezier(.2,.9,.3,1),box-shadow 0.36s;}
+.card:hover{transform:translateY(-12px);box-shadow:0 24px 60px rgba(11,11,16,.55);}
+.card h3{margin:0 0 12px;font-weight:700;}
+.card p{margin:0;color:var(--muted);line-height:1.5;}
 
-/* Waitlist */
-#waitlist{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
-.form{background:var(--glass);padding:24px;border-radius:14px;border:1px solid rgba(255,255,255,.04);max-width:400px;}
-.form label{display:block;margin-bottom:.4rem;font-size:.85rem;color:var(--muted);}
-.form input{width:100%;padding:14px;border-radius:10px;border:none;background:rgba(255,255,255,.03);color:var(--fg);margin-bottom:12px;font-size:1rem;}
-ul{line-height:1.6;padding-left:18px;color:var(--muted);}
+/* Waitlist Form */
+.waitlist{display:flex;gap:32px;flex-wrap:wrap;justify-content:center;margin-top:40px;}
+.form{background:linear-gradient(180deg,#0b0b10,#0f1114);padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,.06);max-width:400px;flex:1;}
+.form label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:6px;}
+.form input{width:100%;padding:12px;border-radius:10px;border:none;background:rgba(255,255,255,.03);color:var(--fg);margin-bottom:12px;font-size:1rem;}
+.form small{color:var(--muted);font-size:.82rem;}
+.form button{width:100%;margin-top:12px;}
 
 /* Footer */
-footer{text-align:center;padding:40px 28px;color:var(--muted);font-size:.92rem;border-top:1px solid rgba(255,255,255,.02);margin-top:48px;}
+footer{padding:40px 28px;text-align:center;color:var(--muted);font-size:.92rem;border-top:1px solid rgba(255,255,255,.02);margin-top:48px;}
+footer .sup{font-size:0.6em;vertical-align:super;line-height:1;}
 
-/* Scroll reveal */
+/* Reveal animations */
 .reveal{opacity:0;transform:translateY(18px) scale(.995);transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.3,1);}
 .reveal.visible{opacity:1;transform:none;}
 
 /* Responsive */
-@media(max-width:940px){.hero-content{grid-template-columns:1fr;text-align:center;gap:40px;}#waitlist{grid-template-columns:1fr;}.cta-row{justify-content:center;}}
-@media(max-width:520px){.btn{width:100%;padding:14px;}}
+@media(max-width:940px){.hero-content{grid-template-columns:1fr;gap:40px;}.hero-product{width:92vw;}}
+@media(max-width:520px){.cta-row{flex-direction:column;gap:12px;}.btn{width:100%;}}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Core-X</div>
+  <div class="logo">CORE<span class="sup">ˣ</span></div>
   <ul>
     <li><a href="#our-story">Story</a></li>
+    <li><a href="#benefits">Benefits</a></li>
     <li><a href="#waitlist">Waitlist</a></li>
-    <li><a href="#">Shop</a></li>
   </ul>
 </nav>
 
 <header>
-  <video class="hero-video" autoplay muted loop playsinline src="hero.mp4"></video>
+  <video class="hero-video" autoplay muted loop playsinline src="hero-video.mp4"></video>
   <div class="hero-content">
     <div class="hero-text">
       <h1>Hustle over Hype</h1>
-      <h2>Core-X</h2>
+      <h2>CORE<span class="sup">ˣ</span></h2>
       <p>Premium gymwear engineered to perform — durable, stylish, and built for your grind.</p>
       <div class="cta-row">
         <button class="btn btn-primary" id="joinWait">Join Waitlist</button>
         <button class="btn btn-secondary" id="discover">Explore Collection</button>
       </div>
-
-      <div class="benefits reveal">
-        <div class="card reveal"><h3>Premium Fabric</h3><p>Breathable, fast-dry knit that keeps shape wash after wash.</p></div>
-        <div class="card reveal"><h3>Thoughtful Fit</h3><p>Engineered cuts — mobility where you need it, clean lines elsewhere.</p></div>
-        <div class="card reveal"><h3>Accessible Pricing</h3><p>We cut the markup, not the quality — designed for real budgets.</p></div>
-      </div>
     </div>
-
     <div class="hero-product">
       <div class="meta-tag">Launching Soon</div>
-      <img src="preview.png" alt="Core-X T-shirt" class="shirt" id="shirtImg">
+      <img src="shirt.png" alt="Coreˣ Shirt" class="shirt" id="shirtImg">
     </div>
   </div>
 </header>
 
 <section id="our-story">
   <h2>Our Story</h2>
-  <p class="reveal">Core-X exists because premium should be accessible. Hustle over Hype — we build durable, stylish gymwear for those who grind, not follow trends.</p>
+  <p class="reveal">CORE<span class="sup">ˣ</span> started because we refuse to accept that gymwear should cost a fortune. Durable, premium, and designed for people who grind.</p>
+</section>
+
+<section id="benefits">
+  <h2>Why Coreˣ</h2>
+  <div class="benefits">
+    <div class="card reveal"><h3>Premium Fabric</h3><p>Breathable, fast-dry knit that keeps shape wash after wash.</p></div>
+    <div class="card reveal"><h3>Thoughtful Fit</h3><p>Engineered cuts — mobility where you need it, clean lines elsewhere.</p></div>
+    <div class="card reveal"><h3>Accessible Pricing</h3><p>We cut the markup, not the quality — designed for real budgets.</p></div>
+  </div>
 </section>
 
 <section id="waitlist">
-  <form class="form reveal" id="waitForm">
-    <h2>Join the Waitlist</h2>
-    <label for="name">Name</label>
-    <input id="name" name="name" type="text" placeholder="Alex" required>
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" placeholder="you@example.com" required>
-    <button type="submit" class="btn btn-primary">Reserve Spot</button>
-  </form>
-  <div class="reveal">
-    <h2>What You Get</h2>
-    <ul>
-      <li>Early access & exclusive discount</li>
-      <li>Launch gift for first 200</li>
-      <li>Priority restock notifications</li>
-    </ul>
+  <h2>Join the Waitlist</h2>
+  <div class="waitlist">
+    <form class="form" id="waitForm"
+          action="https://formsubmit.co/corexwear.se@gmail.com"
+          method="POST"
+          autocomplete="on">
+      <input type="hidden" name="_subject" value="Coreˣ waitlist signup">
+      <input type="hidden" name="_next" value="https://corexwear.se/thanks/thankyou.html">
+      <input type="hidden" name="_captcha" value="false">
+
+      <label for="name">Your Name</label>
+      <input id="name" name="name" type="text" placeholder="Alex" required>
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+      <small>We respect your privacy. Unsubscribe anytime.</small>
+      <button type="submit" class="btn btn-primary">Join Waitlist</button>
+    </form>
   </div>
 </section>
 
 <footer>
-Built with ❤️ by <strong>vyxzl</strong> • © 2025 Core-X
+  Built with care by <strong>vyxzl ❤️</strong> • &copy; 2025 CORE<span class="sup">ˣ</span>
 </footer>
 
 <script>
-// 3D product tilt
+// 3D Shirt tilt
 const shirt = document.getElementById('shirtImg');
 const heroProd = document.querySelector('.hero-product');
-const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-if (!isTouch) {
-  heroProd.addEventListener('pointermove', (e) => {
-    const rect = heroProd.getBoundingClientRect();
-    const x = (e.clientX - rect.left)/rect.width - 0.5;
-    const y = (e.clientY - rect.top)/rect.height - 0.5;
-    shirt.style.transform = `rotateX(${-y*8}deg) rotateY(${x*10}deg) translateZ(6px)`;
-    heroProd.style.transform = 'translateY(-4px)';
-  });
-  heroProd.addEventListener('pointerleave', () => {
-    shirt.style.transform = `rotateX(0) rotateY(0)`;
-    heroProd.style.transform = 'translateY(0)';
-  });
-}
+let rect;
+heroProd.addEventListener('pointermove', e => {
+  rect = heroProd.getBoundingClientRect();
+  const x = (e.clientX - rect.left)/rect.width - 0.5;
+  const y = (e.clientY - rect.top)/rect.height - 0.5;
+  shirt.style.transform = `rotateX(${-y*10}deg) rotateY(${x*10}deg) translateZ(6px)`;
+  heroProd.style.transform = `translateY(-4px)`;
+});
+heroProd.addEventListener('pointerleave', () => {
+  shirt.style.transform = `rotateX(0deg) rotateY(0deg)`;
+  heroProd.style.transform = `translateY(0)`;
+});
 
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries, observer)=>{
+const obs = new IntersectionObserver((entries,o)=>{
   entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
+    if(e.isIntersecting){ e.target.classList.add('visible'); o.unobserve(e.target); }
   });
 },{threshold:0.18});
 reveals.forEach(r=>obs.observe(r));
 
 // CTA scroll
-document.getElementById('discover').addEventListener('click',()=>document.getElementById('our-story').scrollIntoView({behavior:'smooth'}));
+document.getElementById('discover').addEventListener('click',()=>document.getElementById('benefits').scrollIntoView({behavior:'smooth'}));
 document.getElementById('joinWait').addEventListener('click',()=>document.getElementById('waitForm').scrollIntoView({behavior:'smooth'}));
 </script>
 </body>
