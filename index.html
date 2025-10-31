@@ -3,86 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Core-X — Premium Gymwear</title>
+<title>Core-X — Hustle over Hype</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0b0b10;
-  --fg: #e9e9f0;
-  --muted: #a9a9b8;
-  --accent: #8b5cf6;
-  --accent2: #06b6d4;
-  --glass: rgba(255,255,255,0.05);
-  --transition: 0.3s ease-in-out;
+  --bg:#0b0b10; --fg:#e9e9f0; --muted:#a9a9b8;
+  --accent:#8b5cf6; --accent2:#06b6d4; --glass: rgba(255,255,255,0.05);
+  --transition:0.3s ease-in-out;
 }
-* { box-sizing: border-box; margin:0; padding:0; font-family: 'Montserrat', sans-serif; }
-body { background: var(--bg); color: var(--fg); overflow-x:hidden; }
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Montserrat',sans-serif;}
+body{background:var(--bg);color:var(--fg);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;border:none;font-family:inherit;}
 
-a { text-decoration:none; color:inherit; }
-button { cursor:pointer; border:none; font-family:inherit; }
+/* Navbar */
+nav{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;z-index:100;background:rgba(11,11,16,0.6);backdrop-filter:blur(10px);}
+nav .logo{font-weight:900;font-size:1.4rem;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+nav ul{display:flex;gap:24px;list-style:none;}
+nav ul li a{font-weight:600;transition:color var(--transition);}
+nav ul li a:hover{color:var(--accent);}
 
-header { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #0b0b10, #07070b 120%); overflow:hidden; }
-.hero-content { max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 0 28px; z-index:2; position:relative; }
-.hero-text h1 { font-size: clamp(2.8rem,6vw,4rem); font-weight: 900; background: linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height:1.05; }
-.hero-text p { margin-top:1rem; color: var(--muted); font-size:1.05rem; max-width: 44ch; }
-.cta-row { display:flex; gap:16px; margin-top:24px; flex-wrap:wrap; }
-.btn { padding:16px 28px; border-radius:999px; font-weight:700; font-size:1rem; transition: all var(--transition); }
-.btn-primary { background: linear-gradient(90deg,var(--accent),var(--accent2)); color:#fff; box-shadow:0 12px 40px rgba(139,92,246,.12); }
-.btn-primary:hover { transform: scale(1.03); box-shadow:0 20px 60px rgba(139,92,246,.18); }
-.btn-secondary { background: transparent; border:1px solid rgba(255,255,255,.06); color: var(--fg); }
-.hero-product { position:relative; width:420px; max-width:86vw; margin:auto; perspective:1200px; }
-.shirt { width:100%; border-radius:16px; transform-style: preserve-3d; transition: transform 0.16s ease; }
-.meta-tag { position:absolute; top:16px; left:16px; background: var(--glass); padding:.45rem .7rem; border-radius:999px; border:1px solid rgba(255,255,255,.04); font-weight:600; font-size:.85rem; color:var(--muted); }
+/* Hero */
+header{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0b0b10;}
+.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.2;}
+.hero-content{position:relative;z-index:2;max-width:1200px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:0 28px;}
+.hero-text h1{font-size:clamp(2.8rem,6vw,4rem);font-weight:900;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.05;}
+.hero-text h2{font-size:1.6rem;font-weight:700;margin:12px 0;color:var(--fg);}
+.hero-text p{margin-top:1rem;color:var(--muted);font-size:1.05rem;max-width:44ch;}
+.cta-row{display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;}
+.btn{padding:16px 28px;border-radius:999px;font-weight:700;font-size:1rem;transition:all var(--transition);}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 12px 40px rgba(139,92,246,.12);}
+.btn-primary:hover{transform:scale(1.03);box-shadow:0 20px 60px rgba(139,92,246,.18);}
+.btn-secondary{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--fg);}
 
-section { padding:80px 28px; max-width: 1200px; margin:0 auto; position:relative; }
-section h2 { font-size:2rem; font-weight:900; margin-bottom:24px; background: linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-section p { color: var(--muted); font-size:1rem; max-width:50ch; line-height:1.6; }
+/* Hero Product */
+.hero-product{position:relative;width:420px;max-width:86vw;margin:auto;perspective:1200px;}
+.shirt{width:100%;border-radius:16px;transform-style:preserve-3d;transition:transform 0.16s ease;}
+.meta-tag{position:absolute;top:16px;left:16px;background:var(--glass);padding:.45rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.04);font-weight:600;font-size:.85rem;color:var(--muted);}
 
-.benefits { display:flex; gap:20px; flex-wrap:wrap; }
-.card { flex:1 1 240px; min-width:220px; background: var(--glass); border-radius:16px; padding:24px; border:1px solid rgba(255,255,255,.05); backdrop-filter: blur(10px); transition: transform 0.36s cubic-bezier(.2,.9,.3,1), box-shadow 0.36s; }
-.card:hover { transform: translateY(-8px); box-shadow:0 18px 45px rgba(11,11,16,.55); }
-.card h3 { font-weight:700; margin-bottom:.5rem; }
-.card p { color: var(--muted); }
+/* Sections */
+section{padding:80px 28px;max-width:1200px;margin:0 auto;position:relative;}
+section h2{font-size:2rem;font-weight:900;margin-bottom:24px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+section p{color:var(--muted);font-size:1rem;max-width:50ch;line-height:1.6;}
 
-#waitlist { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
-.form { background: var(--glass); padding:24px; border-radius:14px; border:1px solid rgba(255,255,255,.04); max-width:400px; }
-.form label { display:block; margin-bottom:.4rem; font-size:.85rem; color:var(--muted); }
-.form input { width:100%; padding:14px; border-radius:10px; border:none; background: rgba(255,255,255,.03); color: var(--fg); margin-bottom:12px; font-size:1rem; }
+/* Benefits */
+.benefits{display:flex;gap:20px;flex-wrap:wrap;margin-top:32px;}
+.card{flex:1 1 240px;min-width:220px;background:var(--glass);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,.05);backdrop-filter:blur(10px);transition:transform 0.36s cubic-bezier(.2,.9,.3,1),box-shadow 0.36s;}
+.card:hover{transform:translateY(-8px);box-shadow:0 18px 45px rgba(11,11,16,.55);}
+.card h3{font-weight:700;margin-bottom:.5rem;}
+.card p{color:var(--muted);}
 
-footer { text-align:center; padding:40px 28px; color:var(--muted); font-size:.92rem; border-top:1px solid rgba(255,255,255,.02); margin-top:48px; }
+/* Waitlist */
+#waitlist{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.form{background:var(--glass);padding:24px;border-radius:14px;border:1px solid rgba(255,255,255,.04);max-width:400px;}
+.form label{display:block;margin-bottom:.4rem;font-size:.85rem;color:var(--muted);}
+.form input{width:100%;padding:14px;border-radius:10px;border:none;background:rgba(255,255,255,.03);color:var(--fg);margin-bottom:12px;font-size:1rem;}
+ul{line-height:1.6;padding-left:18px;color:var(--muted);}
 
-@media(max-width:940px){ .hero-content { grid-template-columns:1fr; text-align:center; gap:40px; } #waitlist { grid-template-columns:1fr; } .cta-row{justify-content:center;} }
-@media(max-width:520px){ .btn { width:100%; padding:14px; } }
+/* Footer */
+footer{text-align:center;padding:40px 28px;color:var(--muted);font-size:.92rem;border-top:1px solid rgba(255,255,255,.02);margin-top:48px;}
 
+/* Scroll reveal */
 .reveal{opacity:0;transform:translateY(18px) scale(.995);transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.3,1);}
 .reveal.visible{opacity:1;transform:none;}
+
+/* Responsive */
+@media(max-width:940px){.hero-content{grid-template-columns:1fr;text-align:center;gap:40px;}#waitlist{grid-template-columns:1fr;}.cta-row{justify-content:center;}}
+@media(max-width:520px){.btn{width:100%;padding:14px;}}
 </style>
 </head>
 <body>
 
+<nav>
+  <div class="logo">Core-X</div>
+  <ul>
+    <li><a href="#our-story">Story</a></li>
+    <li><a href="#waitlist">Waitlist</a></li>
+    <li><a href="#">Shop</a></li>
+  </ul>
+</nav>
+
 <header>
+  <video class="hero-video" autoplay muted loop playsinline src="hero.mp4"></video>
   <div class="hero-content">
     <div class="hero-text">
-      <h1>Core-X</h1>
-      <p>Premium Gymwear, Engineered to Perform. High-performance basics designed for durability, mobility, and style.</p>
+      <h1>Hustle over Hype</h1>
+      <h2>Core-X</h2>
+      <p>Premium gymwear engineered to perform — durable, stylish, and built for your grind.</p>
       <div class="cta-row">
         <button class="btn btn-primary" id="joinWait">Join Waitlist</button>
-        <button class="btn btn-secondary" id="discover">Discover Collection</button>
+        <button class="btn btn-secondary" id="discover">Explore Collection</button>
       </div>
 
-      <div class="benefits" style="margin-top:32px;">
-        <div class="card reveal">
-          <h3>Premium Fabric</h3>
-          <p>Breathable, fast-dry knit that keeps shape wash after wash.</p>
-        </div>
-        <div class="card reveal">
-          <h3>Thoughtful Fit</h3>
-          <p>Engineered cuts — mobility where you need it, clean lines elsewhere.</p>
-        </div>
-        <div class="card reveal">
-          <h3>Accessible Pricing</h3>
-          <p>We cut the markup, not the quality — designed for real budgets.</p>
-        </div>
+      <div class="benefits reveal">
+        <div class="card reveal"><h3>Premium Fabric</h3><p>Breathable, fast-dry knit that keeps shape wash after wash.</p></div>
+        <div class="card reveal"><h3>Thoughtful Fit</h3><p>Engineered cuts — mobility where you need it, clean lines elsewhere.</p></div>
+        <div class="card reveal"><h3>Accessible Pricing</h3><p>We cut the markup, not the quality — designed for real budgets.</p></div>
       </div>
     </div>
 
@@ -95,7 +111,7 @@ footer { text-align:center; padding:40px 28px; color:var(--muted); font-size:.92
 
 <section id="our-story">
   <h2>Our Story</h2>
-  <p class="reveal">We didn’t have much money, but we wanted premium gym clothes. Core-X started because we refuse to accept that quality should be expensive — we build durable pieces that don’t cost a fortune.</p>
+  <p class="reveal">Core-X exists because premium should be accessible. Hustle over Hype — we build durable, stylish gymwear for those who grind, not follow trends.</p>
 </section>
 
 <section id="waitlist">
@@ -109,7 +125,7 @@ footer { text-align:center; padding:40px 28px; color:var(--muted); font-size:.92
   </form>
   <div class="reveal">
     <h2>What You Get</h2>
-    <ul style="color:var(--muted); line-height:1.6; padding-left:18px;">
+    <ul>
       <li>Early access & exclusive discount</li>
       <li>Launch gift for first 200</li>
       <li>Priority restock notifications</li>
@@ -118,11 +134,11 @@ footer { text-align:center; padding:40px 28px; color:var(--muted); font-size:.92
 </section>
 
 <footer>
-  Built with ❤️ by <strong>vyxzl</strong> • © 2025 Core-X
+Built with ❤️ by <strong>vyxzl</strong> • © 2025 Core-X
 </footer>
 
 <script>
-// 3D product tilt (non-touch)
+// 3D product tilt
 const shirt = document.getElementById('shirtImg');
 const heroProd = document.querySelector('.hero-product');
 const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -135,22 +151,23 @@ if (!isTouch) {
     heroProd.style.transform = 'translateY(-4px)';
   });
   heroProd.addEventListener('pointerleave', () => {
-    shirt.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    shirt.style.transform = `rotateX(0) rotateY(0)`;
     heroProd.style.transform = 'translateY(0)';
   });
 }
 
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries, o) => {
-  entries.forEach(en => {
-    if(en.isIntersecting){ en.target.classList.add('visible'); o.unobserve(en.target);}
+const obs = new IntersectionObserver((entries, observer)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
   });
 },{threshold:0.18});
 reveals.forEach(r=>obs.observe(r));
 
 // CTA scroll
-document.getElementById('discover').addEventListener('click',()=>{document.getElementById('our-story').scrollIntoView({behavior:'smooth'});});
+document.getElementById('discover').addEventListener('click',()=>document.getElementById('our-story').scrollIntoView({behavior:'smooth'}));
+document.getElementById('joinWait').addEventListener('click',()=>document.getElementById('waitForm').scrollIntoView({behavior:'smooth'}));
 </script>
 </body>
 </html>
