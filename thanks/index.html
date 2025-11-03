@@ -1,224 +1,281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Thanks — You're on the Corex list</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoreX - Hustle Over Hype | Premium Gymwear Waitlist</title>
 <style>
-  :root{
-    --bg:#0b0b10; --fg:#e9e9f0; --muted:#a9a9b8;
-    --accent:#8b5cf6; --accent2:#06b6d4; --cta:#ff6b6b;
-    --glass: rgba(255,255,255,0.04);
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0; font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;
-    background:linear-gradient(180deg,var(--bg),#07070b 120%); color:var(--fg);
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    display:flex; align-items:center; justify-content:center; padding:28px;
-  }
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg-dark:#1a1a1f;
+  --bg-card:#222228;
+  --bg-secondary:#2a2a32;
+  --text-primary:#f5f5f7;
+  --text-muted:#a0a0a8;
+  --accent-lime:#c8ff00;
+  --accent-lime-dark:#a8df00;
+  --border:#3a3a42;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  background-color:var(--bg-dark);
+  color:var(--text-primary);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+/* Brand Header */
+.brand-header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(26,26,31,.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:1rem 2rem;
+}
+.brand-logo{
+  font-size:1.5rem;
+  font-weight:900;
+  letter-spacing:.05em;
+  text-align:center;
+}
+.brand-logo sup{color:var(--accent-lime);font-size:1rem;}
 
-  .card{
-    width:100%; max-width:980px; border-radius:18px; padding:36px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 30px 80px rgba(2,2,6,.6);
-    position:relative; overflow:hidden;
-  }
+/* Hero Section */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:8rem 2rem 5rem;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:25%;left:50%;
+  transform:translateX(-50%);
+  width:800px;height:800px;
+  background:radial-gradient(circle, rgba(200,255,0,.05) 0%, transparent 70%);
+  border-radius:50%;
+  filter:blur(120px);
+  pointer-events:none;
+}
+.container{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.badge{display:inline-flex;align-items:center;gap:.75rem;padding:.75rem 1.5rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:9999px;margin-bottom:3rem;}
+.pulse-dot{width:10px;height:10px;background:var(--accent-lime);border-radius:50%;animation:pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.badge-text{font-size:.875rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;}
+.hero-content{text-align:center;max-width:1100px;margin:0 auto;}
+.hero-title{font-size:clamp(3rem,12vw,9rem);font-weight:900;line-height:.9;letter-spacing:-.05em;margin-bottom:2rem;}
+.hero-title .accent{color:var(--accent-lime);}
+.hero-description{font-size:clamp(1.125rem,2vw,1.5rem);color:var(--text-muted);max-width:800px;margin:0 auto 3rem;line-height:1.6;}
+.hero-description strong{color:var(--text-primary);font-weight:700;}
+.cta-buttons{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:5rem;}
+.btn{padding:1.25rem 2.5rem;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border:none;border-radius:.5rem;cursor:pointer;transition:all .3s ease;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;}
+.btn-primary{background:var(--accent-lime);color:var(--bg-dark);}
+.btn-primary:hover{background:var(--accent-lime-dark);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--text-primary);border:2px solid var(--border);}
+.btn-outline:hover{border-color:var(--accent-lime);color:var(--accent-lime);}
 
-  /* decorative blobs */
-  .blob{
-    position:absolute; border-radius:50%; filter:blur(80px); opacity:.22; pointer-events:none;
-  }
-  .b1{ width:520px; height:520px; left:-140px; top:-160px; background:radial-gradient(circle,#8b5cf6,#06b6d4); }
-  .b2{ width:420px; height:420px; right:-120px; bottom:-140px; background:radial-gradient(circle,#ff6b6b,#ffd166); }
+/* Product Showcase */
+.product-showcase{max-width:900px;margin:0 auto;position:relative;}
+.product-card{
+  background:rgba(34,34,40,.5);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--border);
+  border-radius:1rem;
+  padding:3rem;
+  position:relative;
+  margin-bottom:3rem;
+}
+.coming-soon-badge{
+  position:absolute;
+  top:1.5rem;right:1.5rem;
+  padding:.5rem 1rem;
+  background:rgba(200,255,0,.2);
+  border:1px solid rgba(200,255,0,.3);
+  color:var(--accent-lime);
+  font-size:.75rem;
+  font-weight:700;
+  text-transform:uppercase;
+  border-radius:.375rem;
+}
+.product-image{width:100%;height:auto;border-radius:.5rem;margin-bottom:1.5rem;}
+.product-title{font-size:2rem;font-weight:900;letter-spacing:-.02em;margin-bottom:.5rem;}
+.product-title sup{color:var(--accent-lime);}
+.product-subtitle{font-size:.875rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.15em;}
 
-  .content{ display:grid; grid-template-columns: 1fr 360px; gap:28px; align-items:center; }
-  @media(max-width:920px){ .content{ grid-template-columns: 1fr; } }
+/* Stats Section */
+.stats{padding:5rem 2rem;background: rgba(42,42,50,.3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;max-width:1200px;margin:0 auto;}
+.stat-item{text-align:center;}
+.stat-value{font-size:clamp(3rem,8vw,5rem);font-weight:900;color:var(--accent-lime);line-height:1;margin-bottom:.75rem;transition:transform .3s ease;}
+.stat-item:hover .stat-value{transform:scale(1.1);}
+.stat-label{font-size:.875rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.15em;font-weight:600;}
 
-  .left{
-    padding-right:12px;
-  }
-  h1{
-    font-size:clamp(2.2rem,4vw,3.6rem); margin:0 0 8px;
-    background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    line-height:1;
-  }
-  .sub{ color:var(--muted); margin-bottom:16px; font-size:1.05rem; max-width:54ch; }
+/* Benefits Section */
+.benefits{padding:6rem 2rem;}
+.section-header{text-align:center;margin-bottom:5rem;}
+.section-title{font-size:clamp(2.5rem,8vw,5rem);font-weight:900;letter-spacing:-.03em;margin-bottom:1.5rem;line-height:1.1;}
+.section-subtitle{font-size:1.25rem;color:var(--text-muted);max-width:700px;margin:0 auto;}
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1200px;margin:0 auto;}
+.benefit-card{background:rgba(34,34,40,.5);border:2px solid var(--border);border-radius:1rem;padding:2.5rem;transition:all .3s ease;}
+.benefit-card:hover{border-color:rgba(200,255,0,.5);background:var(--bg-secondary);transform:translateY(-4px);}
+.benefit-icon{width:3.5rem;height:3.5rem;background:rgba(200,255,0,.1);border:1px solid rgba(200,255,0,.2);border-radius:.75rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;transition:all .3s ease;}
+.benefit-card:hover .benefit-icon{background:rgba(200,255,0,.2);}
+.benefit-icon svg{width:1.75rem;height:1.75rem;stroke:var(--accent-lime);stroke-width:2;fill:none;}
+.benefit-title{font-size:1.75rem;font-weight:700;margin-bottom:1rem;letter-spacing:-.02em;}
+.benefit-description{color:var(--text-muted);line-height:1.6;}
 
-  .right{
-    display:flex; flex-direction:column; gap:12px; align-items:center;
-  }
-  .shirt{
-    width:240px; border-radius:12px; overflow:hidden; display:block; background:#0b0b10; box-shadow: 0 20px 50px rgba(3,3,6,.6);
-    transition: transform .18s ease;
-  }
-  .shirt img{ width:100%; display:block; }
-
-  .actions{ display:flex; gap:10px; margin-top:6px; width:100%; }
-  .btn{
-    flex:1; border-radius:999px; padding:12px 14px; border:none; cursor:pointer; font-weight:700;
-    color:#fff; background:linear-gradient(90deg,var(--accent),var(--accent2)); box-shadow:0 10px 30px rgba(139,92,246,.12);
-    transition: transform .14s ease;
-  }
-  .btn:active{ transform: translateY(1px); }
-  .btn.ghost{ background:transparent; border:1px solid rgba(255,255,255,.06); color:var(--fg); }
-
-  .share{ display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; justify-content:flex-start; }
-  .share a{ color:var(--muted); text-decoration:none; font-weight:600; font-size:.95rem; }
-
-  footer{ margin-top:18px; color:var(--muted); font-size:0.92rem; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
-
-  .reveal{ opacity:0; transform: translateY(10px) scale(.995); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.3,1); }
-  .reveal.visible{ opacity:1; transform:none; }
-
-  /* confetti canvas sits on top */
-  canvas.confetti{ position:fixed; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index:9999; }
-
-  @media (prefers-reduced-motion: reduce){ *{transition:none !important; animation:none !important} }
+/* Form Section */
+.form-section{padding:6rem 2rem;background: rgba(42,42,50,.2);}
+.form-container{max-width:700px;margin:0 auto;}
+.form-card{background:rgba(34,34,40,.5);backdrop-filter:blur(10px);border:2px solid var(--border);border-radius:1rem;padding:4rem;}
+.form-header{text-align:center;margin-bottom:3rem;}
+.form-title{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;letter-spacing:-.03em;margin-bottom:1.5rem;line-height:1.1;}
+.form-description{font-size:1.125rem;color:var(--text-muted);line-height:1.6;}
+.form-description sup{color:var(--accent-lime);}
+.form-group{margin-bottom:1.5rem;}
+.form-label{display:block;font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;}
+.form-input{width:100%;padding:1rem 1.25rem;font-size:1rem;background:var(--bg-dark);border:2px solid var(--border);border-radius:.5rem;color:var(--text-primary);transition:all .3s ease;}
+.form-input:focus{outline:none;border-color:var(--accent-lime);}
+.form-input::placeholder{color:var(--text-muted);}
+.form-note{font-size:.875rem;color:var(--text-muted);margin-top:1rem;}
+@media(max-width:768px){.cta-buttons{flex-direction:column}.btn{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
-  <div class="card" role="main" aria-labelledby="thanksTitle">
-    <div class="blob b1" aria-hidden="true"></div>
-    <div class="blob b2" aria-hidden="true"></div>
 
-    <div class="content">
-      <div class="left">
-        <h1 id="thanksTitle">You're on the list — welcome to Corex 👊</h1>
-        <p class="sub reveal" id="greeting">Thanks for joining the waitlist. We’ll email you when we drop — and the first 200 get a free launch gift.</p>
+<!-- Brand Header -->
+<header class="brand-header">
+  <div class="brand-logo">CORE<sup>X</sup></div>
+</header>
 
-        <div class="reveal" id="moreCopy" style="margin-top:18px">
-          <p style="color:var(--muted); max-width:60ch;">
-            Quality shouldn’t cost the Earth. Welcome to the crew — expect a short, friendly email from us soon with next steps.
-            Keep an eye on your inbox (and spam folder just in case).
-          </p>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div style="text-align:center;">
+        <div class="badge">
+          <span class="pulse-dot"></span>
+          <span class="badge-text">Launching Soon</span>
         </div>
-
-        <div class="reveal" style="margin-top:18px">
-          <div class="share" aria-label="Share options">
-            <a id="tweet" href="#" target="_blank" rel="noopener">Share on X</a>
-            <a id="copyLink" href="#" onclick="return false;">Copy launch link</a>
-          </div>
-        </div>
-
-        <footer>
-          <div>Built by <strong>vyxzl ❤️</strong></div>
-          <div style="opacity:.8">© 2025 Corex</div>
-        </footer>
+      </div>
+      <h1 class="hero-title">
+        <div>HUSTLE</div>
+        <div>OVER</div>
+        <div class="accent">HYPE.</div>
+      </h1>
+      <p class="hero-description">
+        Built for people who grind. Premium gymwear that performs when it matters.
+        <strong>No BS. Just quality at real prices.</strong>
+      </p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary" onclick="document.getElementById('waitlist-form').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+        <button class="btn btn-outline" onclick="document.getElementById('waitlist-form').scrollIntoView({behavior:'smooth'})">Learn More</button>
       </div>
 
-      <div class="right">
-        <div class="shirt reveal" id="shirtWrap" aria-hidden="false">
-          <img src="preview.png" alt="Corex T-shirt">
-        </div>
-
-        <div class="actions reveal">
-          <button class="btn" id="backBtn">Back to Home</button>
+      <!-- Product Showcase -->
+      <div class="product-showcase">
+        <div class="product-card">
+          <div class="coming-soon-badge">Coming Soon</div>
+          <img src="designs/whiteteewobackground.png" alt="CoreX Premium Gym Shirt" class="product-image">
+          <div style="text-align:center;">
+            <p class="product-title">CORE<sup>X</sup></p>
+            <p class="product-subtitle">Premium Gymwear</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- canvas for confetti -->
-  <canvas class="confetti" id="confettiCanvas" aria-hidden="true"></canvas>
+<!-- Stats Section -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-value">10+</div>
+      <div class="stat-label">Grinders Waiting</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">48hrs</div>
+      <div class="stat-label">Launch Window</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">30%</div>
+      <div class="stat-label">Early Access Discount</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">0%</div>
+      <div class="stat-label">Hype. All Hustle.</div>
+    </div>
+  </div>
+</section>
 
-<script>
-/* ====== Accessibility: reduced motion ====== */
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<!-- Benefits Section -->
+<section class="benefits">
+  <div class="section-header">
+    <h2 class="section-title">BUILT FOR THE <span class="accent">GRIND</span></h2>
+    <p class="section-subtitle">Founded by Adian Karol Hipsz. For everyone who puts in the work.</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg>
+      </div>
+      <h3 class="benefit-title">Built to Perform</h3>
+      <p class="benefit-description">Premium materials that move with you. Designed for the gym, built to last through every rep.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+      </div>
+      <h3 class="benefit-title">For the Grind</h3>
+      <p class="benefit-description">No gimmicks. Clean designs that work as hard as you do, in and out of the gym.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      </div>
+      <h3 class="benefit-title">Real Prices</h3>
+      <p class="benefit-description">Quality shouldn't cost a fortune. Premium gymwear at prices that make sense.</p>
+    </div>
+  </div>
+</section>
 
-/* ====== Reveal on load ====== */
-document.querySelectorAll('.reveal').forEach((el, i) => {
-  setTimeout(() => el.classList.add('visible'), 120 + i * 110);
-});
+<!-- Waitlist Form Section -->
+<section id="waitlist-form" class="form-section">
+  <div class="form-container">
+    <div class="form-card">
+      <div class="form-header">
+        <h2 class="form-title">JOIN THE <span class="accent">MOVEMENT</span></h2>
+        <p class="form-description">Get early access to Core<sup>X</sup>. 30% off your first order. No hype, just hustle.</p>
+      </div>
 
-/* ====== Back button ====== */
-document.getElementById('backBtn').addEventListener('click', () => {
-  if (document.referrer) {
-    history.back();
-    setTimeout(() => { if (location.pathname.endsWith('thankyou.html')) location.href = '/'; }, 600);
-  } else {
-    location.href = '/';
-  }
-});
+      <!-- FormSubmit Form -->
+      <form action="https://formsubmit.co/corexwear.se@gmail.com" method="POST">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+        </div>
 
-/* ====== Copy link & Tweet share ====== */
-const launchURL = window.location.origin + '/'; // adjust if you want a specific landing
-document.getElementById('copyLink').addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(launchURL);
-    const el = document.getElementById('copyLink');
-    el.textContent = 'Link copied ✓';
-    setTimeout(() => el.textContent = 'Copy launch link', 2200);
-  } catch {
-    alert('Copy failed — use your browser share button.');
-  }
-});
-document.getElementById('tweet').addEventListener('click', (e) => {
-  const text = encodeURIComponent("I just joined Corex' waitlist — premium gymwear without the premium price. Join: " + launchURL);
-  const url = `https://twitter.com/intent/tweet?text=${text}`;
-  window.open(url, '_blank', 'noopener');
-});
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+        </div>
 
-/* ====== Confetti (simple canvas) ====== */
-(function runConfetti(){
-  if (prefersReduced) return;
-  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-  if (isTouch) return; // skip on touch for perf/battery
+        <!-- FormSubmit Hidden Fields -->
+        <input type="hidden" name="_subject" value="New Waitlist Signup">
+        <input type="hidden" name="_autoresponse" value="Thanks for joining the CoreX waitlist! 💪">
+        <input type="hidden" name="_next" value="https://corexwear.se/thank-you.html">
 
-  const canvas = document.getElementById('confettiCanvas');
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-  const ctx = canvas.getContext('2d');
-  const colors = ['#8b5cf6','#06b6d4','#ff6b6b','#ffd166'];
-  const pieces = Array.from({length:36}).map(() => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * -canvas.height,
-    w: Math.random() * 10 + 6,
-    h: Math.random() * 6 + 4,
-    vx: (Math.random() - 0.5) * 2.6,
-    vy: Math.random() * 3 + 2,
-    r: Math.random() * 360,
-    color: colors[Math.floor(Math.random() * colors.length)],
-    ang: Math.random() * Math.PI * 2,
-    rotSpeed: (Math.random() - 0.5) * 0.2
-  }));
+        <button type="submit" class="btn btn-primary form-submit">Join Waitlist</button>
+      </form>
 
-  let tick = 0;
-  function frame() {
-    tick++;
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    pieces.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.05;
-      p.ang += p.rotSpeed;
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.ang);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
-      ctx.restore();
-      // recycle
-      if (p.y > canvas.height + 40) {
-        p.x = Math.random()*canvas.width;
-        p.y = -20 - Math.random()*200;
-        p.vy = Math.random() * 3 + 2;
-      }
-    });
-    if (tick < 300) requestAnimationFrame(frame);
-    else setTimeout(()=>{ ctx.clearRect(0,0,canvas.width,canvas.height); canvas.parentNode.removeChild(canvas); }, 300);
-  }
-  frame();
-})();
+      <p class="form-note">We respect your privacy. Unsubscribe anytime. No spam, ever.</p>
+    </div>
+  </div>
+</section>
 
-/* ====== Resize canvas on viewport changes ====== */
-window.addEventListener('resize', () => {
-  const c = document.getElementById('confettiCanvas');
-  if (c) { c.width = innerWidth; c.height = innerHeight; }
-});
-</script>
 </body>
 </html>
