@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CoreX | OS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #14b8a6; --bg: #050505; --card: #0c0c0c; --border: rgba(255,255,255,0.08); }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { background: var(--bg); color: #e0e0e0; font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* Mobile Header */
+        .mobile-nav-toggle { 
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.5rem; background: var(--bg); border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        @media (min-width: 1024px) { .mobile-nav-toggle { display: none; } }
+
+        /* Sidebar - Responsive */
+        aside { 
+            width: 280px; border-right: 1px solid var(--border); padding: 2rem; 
+            display: flex; flex-direction: column; background: var(--bg); 
+            position: fixed; height: 100vh; z-index: 2000;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-100%);
+        }
+        aside.open { transform: translateX(0); }
+        @media (min-width: 1024px) { aside { transform: translateX(0); position: fixed; } }
+
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 3rem; text-decoration: none; }
+        .logo span { color: var(--accent); }
+
+        nav { flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+        nav a { color: #555; text-decoration: none; font-size: 0.9rem; padding: 0.8rem 1rem; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        nav a.active { background: rgba(255,255,255,0.03); color: white; border: 1px solid var(--border); }
+
+        /* Main Content */
+        main { flex: 1; padding: 1.5rem; width: 100%; transition: margin 0.3s; }
+        @media (min-width: 1024px) { main { margin-left: 280px; padding: 4rem 5rem; } }
+
+        .section-content { display: none; max-width: 800px; margin: 0 auto; }
+        .section-content.active { display: block; animation: fadeIn 0.2s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { background: var(--card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; }
+        .section-title { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15rem; color: var(--accent); margin-bottom: 1.5rem; }
+
+        /* UI Elements */
+        textarea, input[type="text"] { 
+            width: 100%; background: rgba(255,255,255,0.02); border: 1px solid var(--border); 
+            color: white; padding: 1rem; border-radius: 6px; font-family: inherit; font-size: 16px; /* 16px prevents iOS zoom */
+            outline: none; margin-bottom: 1rem;
+        }
+        textarea { height: 120px; resize: none; }
+        
+        .btn { 
+            background: white; color: black; border: none; padding: 1rem 1.5rem; 
+            border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem; 
+            text-transform: uppercase; letter-spacing: 0.05em; width: 100%;
+        }
+        @media (min-width: 768px) { .btn { width: auto; } }
+
+        .task-row { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+        .item-entry { padding: 1.2rem 0; border-bottom: 1px solid var(--border); }
+        
+        /* Sidebar Overlay */
+        .overlay { 
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); 
+            backdrop-filter: blur(4px); z-index: 1500; 
+        }
+        .overlay.open { display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-nav-toggle">
+        <div class="logo" style="margin:0">C<span>X</span></div>
+        <button onclick="toggleNav()" style="background:none; border:none; color:white; font-size:1.5rem;">☰</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleNav()"></div>
+
+    <aside id="sidebar">
+        <div class="logo">CORE<span>X</span></div>
+        <nav>
+            <a onclick="s('strategy')" id="t-strategy" class="active">Strategy</a>
+            <a onclick="s('brand')" id="t-brand">Identity</a>
+            <a onclick="s('supply')" id="t-supply">Supply Chain</a>
+            <a onclick="s('inventory')" id="t-inventory">Inventory</a>
+            <a onclick="lo()" style="margin-top: auto; color: #444; font-size: 0.7rem;">Terminate Session</a>
+        </nav>
+    </aside>
+
+    <main>
+        <div id="section-strategy" class="section-content active">
+            <div class="card">
+                <p class="section-title">Critical Path</p>
+                <div id="tl"></div>
+                <div style="margin-top: 1.5rem;">
+                    <input type="text" id="ti" placeholder="New objective...">
+                    <button class="btn" onclick="at()">Add Task</button>
+                </div>
+            </div>
+            <div class="card">
+                <p class="section-title">Daily Log</p>
+                <textarea id="si" placeholder="What happened today?"></textarea>
+                <button class="btn" onclick="sd('STRATEGY', 'si')">Commit to Log</button>
+                <div id="strategy-list" style="margin-top:2rem;"></div>
+            </div>
+        </div>
+
+        <div id="section-brand" class="section-content">
+            <div class="card" style="text-align: center; padding: 4rem 1rem;">
+                <p class="section-title">Identity</p>
+                <h2 style="font-family: 'Space Grotesk'; font-size: 4rem;">C<sup style="color:var(--accent)">X</sup></h2>
+                <p style="letter-spacing: 0.3em; color: #333; font-size: 0.7rem; margin-top: 1rem;">HUSTLE OVER HYPE</p>
+            </div>
+            <div class="card">
+                <p class="section-title">The Words</p>
+                <p style="font-size: 1.1rem; line-height: 1.6; color: #888;">"My family didn't have a lot of money. I wanted gear that was actually affordable but could handle a brutal session without the premium price tag."</p>
+            </div>
+        </div>
+
+        <div id="section-supply" class="section-content"><div class="card"><p class="section-title">Supply Chain</p><textarea id="sui"></textarea><button class="btn" onclick="sd('SUPPLY', 'sui')">Save Data</button><div id="supply-list"></div></div></div>
+        <div id="section-inventory" class="section-content"><div class="card"><p class="section-title">Inventory Control</p><textarea id="ii"></textarea><button class="btn" onclick="sd('INVENTORY', 'ii')">Save Data</button><div id="inventory-list"></div></div></div>
+    </main>
+
+    <script>
+        if (localStorage.getItem('corex_auth') !== 'active') { window.location.href = 'login.html'; }
+
+        function toggleNav() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('open');
+        }
+
+        function s(id) { 
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active')); 
+            document.getElementById('t-' + id).classList.add('active'); 
+            document.querySelectorAll('.section-content').forEach(x => x.classList.remove('active')); 
+            document.getElementById('section-' + id).classList.add('active'); 
+            if(window.innerWidth < 1024) toggleNav();
+        }
+
+        function at() { const i = document.getElementById('ti'); if (!i.value) return; const t = JSON.parse(localStorage.getItem('cx_t') || '[]'); t.push({ text: i.value, c: false }); localStorage.setItem('cx_t', JSON.stringify(t)); i.value = ''; lt(); }
+        function lt() { const l = document.getElementById('tl'); l.innerHTML = ''; const t = JSON.parse(localStorage.getItem('cx_t') || '[]'); t.forEach((x, i) => { const d = document.createElement('div'); d.className = 'task-row'; d.innerHTML = `<input type="checkbox" ${x.c ? 'checked' : ''} onchange="tg(${i})"><span style="flex:1;${x.c ? 'text-decoration:line-through;opacity:0.3' : ''}">${x.text}</span><button onclick="dt(${i})" style="background:none;border:none;color:#444;font-size:1.2rem;">&times;</button>`; l.appendChild(d); }); }
+        function tg(i) { const t = JSON.parse(localStorage.getItem('cx_t') || '[]'); t[i].c = !t[i].c; localStorage.setItem('cx_t', JSON.stringify(t)); lt(); }
+        function dt(i) { const t = JSON.parse(localStorage.getItem('cx_t') || '[]'); t.splice(i, 1); localStorage.setItem('cx_t', JSON.stringify(t)); lt(); }
+        function sd(c, id) { const v = document.getElementById(id).value; if (!v) return; const m = JSON.parse(localStorage.getItem('cx_d') || '[]'); m.unshift({ c, t: v, d: new Date().toLocaleDateString() }); localStorage.setItem('cx_d', JSON.stringify(m)); document.getElementById(id).value = ''; r(); }
+        
+        function r() { 
+            const ids = { STRATEGY: 'strategy-list', SUPPLY: 'supply-list', INVENTORY: 'inventory-list' }; 
+            Object.values(ids).forEach(id => { const el = document.getElementById(id); if(el) el.innerHTML = ''; }); 
+            const m = JSON.parse(localStorage.getItem('cx_d') || '[]'); 
+            m.forEach(x => { 
+                const l = document.getElementById(ids[x.c]); 
+                if (l) { 
+                    const d = document.createElement('div'); 
+                    d.className = 'item-entry'; 
+                    d.innerHTML = `<div style="font-size:0.6rem;color:#444;margin-bottom:0.5rem">${x.d}</div><div style="font-size:0.9rem;line-height:1.4">${x.t}</div>`; 
+                    l.appendChild(d); 
+                } 
+            }); 
+        }
+        function lo() { localStorage.removeItem('corex_auth'); window.location.href = 'login.html'; }
+        window.onload = function() { r(); lt(); };
+    </script>
+</body>
+</html>

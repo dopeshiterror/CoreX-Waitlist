@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CoreX | Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #14b8a6; --bg: #000; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            background: var(--bg); 
+            color: white; 
+            font-family: 'Space Grotesk', sans-serif; 
+            height: 100vh; 
+            /* Fix for mobile height issues */
+            height: -webkit-fill-available;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 2rem;
+        }
+
+        .login-card { 
+            width: 100%; 
+            max-width: 340px; 
+            text-align: center; 
+        }
+
+        .logo { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            letter-spacing: -2px; 
+            margin-bottom: 3rem; 
+        }
+        .logo span { color: var(--accent); }
+
+        /* Mobile specific input fix: 16px prevents iOS auto-zoom */
+        input { 
+            width: 100%; 
+            padding: 1.2rem; 
+            background: #0a0a0a; 
+            border: 1px solid #111; 
+            color: white; 
+            font-family: inherit; 
+            margin-bottom: 1rem; 
+            border-radius: 2px; 
+            text-align: center; 
+            outline: none; 
+            font-size: 16px; 
+            transition: 0.2s;
+        }
+        
+        input:focus { border-color: var(--accent); background: #000; }
+
+        button { 
+            width: 100%; 
+            padding: 1.2rem; 
+            background: white; 
+            color: black; 
+            border: none; 
+            font-weight: 700; 
+            cursor: pointer; 
+            border-radius: 2px; 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 0.1em;
+            transition: 0.2s;
+        }
+        
+        button:active { transform: scale(0.98); background: var(--accent); }
+
+        .error { color: #ff4a4a; font-size: 0.7rem; margin-top: 1.5rem; display: none; text-transform: uppercase; letter-spacing: 0.1em; }
+        
+        .back-link { margin-top: 2rem; display: block; color: #333; text-decoration: none; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo">C<span><sup>X</sup></span></div>
+        <input type="password" id="key" placeholder="ACCESS_KEY" spellcheck="false">
+        <button onclick="v()">Authorize System</button>
+        <div id="err" class="error">Access Denied: Invalid Key</div>
+        <a href="index.html" class="back-link">Return to Home</a>
+    </div>
+
+    <script>
+        // Allow "Enter" key to submit
+        document.getElementById('key').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') v();
+        });
+
+        function v() {
+            const i = document.getElementById('key').value;
+            if(btoa(i) === "Y29yZXh3ZWFyaXN0aGVmdXR1cmUyMDI2") {
+                localStorage.setItem('corex_auth', 'active');
+                window.location.href = 'dashboard.html';
+            } else {
+                const err = document.getElementById('err');
+                err.style.display = 'block';
+                // Haptic feedback feel
+                document.getElementById('key').style.borderColor = '#ff4a4a';
+                setTimeout(() => { document.getElementById('key').style.borderColor = '#111'; }, 500);
+            }
+        }
+    </script>
+</body>
+</html>
