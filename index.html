@@ -3,189 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoreX - Hustle Over Hype</title>
-  <meta name="description" content="CoreX - Affordable quality gym wear from Sweden. Launching 2027. Hustle Over Hype.">
-  <link rel="stylesheet" href="styles.css">
+  <title>CoreX | Hustle Over Hype</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --accent: #14b8a6; --bg: #000; --text: #fff; --border: rgba(255,255,255,0.05); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    /* Desktop Cursor - Hidden on mobile automatically by most browsers */
+    @media (pointer: fine) { * { cursor: crosshair; } }
+
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); line-height: 1.1; overflow-x: hidden; }
+
+    /* Structural Grid - Tightened for Mobile */
+    .container { padding: 0 1.5rem; max-width: 1400px; margin: 0 auto; }
+    @media (min-width: 768px) { .container { padding: 0 4rem; } }
+    
+    /* Navigation */
+    nav { padding: 2rem 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: 700; text-decoration: none; color: #fff; letter-spacing: -2px; }
+    .logo sup { color: var(--accent); font-size: 0.8rem; top: -1em; }
+    .nav-links a { text-decoration: none; color: #444; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 1.5rem; }
+
+    /* Hero - Responsive Type */
+    .hero { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid var(--border); padding: 4rem 0; }
+    .hero h1 { font-size: clamp(3.5rem, 18vw, 12rem); font-weight: 700; letter-spacing: -0.06em; line-height: 0.85; }
+    .hero-meta { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
+    @media (min-width: 768px) { .hero-meta { flex-direction: row; justify-content: space-between; align-items: flex-end; } }
+    .hero-meta p { max-width: 280px; color: #333; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; line-height: 1.4; }
+
+    /* Manifesto - Grid to Column */
+    .manifesto { padding: 6rem 0; display: grid; grid-template-columns: 1fr; gap: 3rem; border-bottom: 1px solid var(--border); }
+    @media (min-width: 1024px) { .manifesto { padding: 12rem 0; grid-template-columns: 1fr 1fr; gap: 6rem; } }
+    .manifesto h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 500; letter-spacing: -2px; line-height: 0.9; }
+    .manifesto-text { font-size: clamp(1.2rem, 4vw, 1.6rem); color: #666; font-weight: 300; line-height: 1.4; }
+    .highlight { color: #fff; font-weight: 500; }
+
+    /* Identity - Mobile Scaled */
+    .identity-block { background: #080808; padding: 6rem 1rem; text-align: center; margin: 4rem 0; }
+    @media (min-width: 768px) { .identity-block { padding: 10rem 2rem; margin: 6rem 0; } }
+    .cx-logo { font-size: clamp(5rem, 20vw, 9rem); font-weight: 700; letter-spacing: -5px; margin-bottom: 1rem; }
+    .cx-logo sup { color: var(--accent); font-size: 40%; top: -1.2em; }
+    .identity-block p { text-transform: uppercase; letter-spacing: 0.3em; color: #222; font-size: 0.7rem; font-weight: 700; }
+
+    /* Footer */
+    footer { padding: 4rem 0; display: flex; flex-direction: column; gap: 2rem; align-items: center; color: #222; text-transform: uppercase; font-size: 0.6rem; letter-spacing: 0.2em; border-top: 1px solid var(--border); text-align: center; }
+    @media (min-width: 768px) { footer { flex-direction: row; justify-content: space-between; text-align: left; } }
+    
+    a { color: inherit; text-decoration: none; transition: 0.3s; }
+    a:hover { color: var(--accent); }
+  </style>
 </head>
 <body>
-  
-  <nav class="nav-blur">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-center justify-between h-16">
-        <a href="#top" class="logo">
-          CORE<sup class="accent">X</sup>
-        </a>
-        
-        <div class="nav-links">
-          <a href="#story">Story</a>
-          <a href="#values">Why CoreX</a>
-          <a href="#mission">Mission</a>
-        </div>
-      </div>
-    </div>
-  </nav>
 
-  <section id="top" class="hero">
-    <div class="max-w-6xl mx-auto w-full py-20 text-center px-6">
-      <div class="launch-tag">
-        <div class="pulse-dot"></div>
-        <span>We hope to have released by 2027, but you never know</span>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">C<sup>X</sup></a>
+      <div class="nav-links">
+        <a href="#vision">Manifesto</a>
+        <a href="login.html">Portal</a>
       </div>
-      
-      <h1 class="hero-title">
-        HUSTLE<br/>
-        <span class="accent">OVER</span><br/>
-        HYPE
-      </h1>
-      
-      <p class="hero-subtitle">
-        Quality gym gear that doesn't empty your wallet.
-      </p>
-      
-      <div class="hero-buttons">
-        <a href="#story">
-          <button class="btn-secondary">Read the Story</button>
-        </a>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <section id="story" class="story-section">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="story-grid">
-        <div>
-          <span class="section-tag">The Story</span>
-          
-          <h2 class="section-title">
-            Started by a <span class="accent">16 year old</span> from Sweden
-          </h2>
-          
-          <div class="story-content">
-            <p>
-              My name is Adian. I'm 16 and I started CoreX because I was tired of the fitness industry.
-            </p>
-            
-            <p>
-              Brands charging ridiculous prices just because an influencer wore it. Or cheap alternatives that fall apart after three washes.
-            </p>
-            
-            <p>
-              I couldn't afford the premium brands, and I wasn't settling for low quality. So I decided to do something about it.
-            </p>
-            
-            <p class="story-emphasis">
-              CoreX is about making quality gear that real people can actually afford. No celebrity endorsements. No artificial hype. Just solid gym wear at honest prices.
-            </p>
-          </div>
-        </div>
-        
-        <div class="founder-card">
-          <img src="9177.jpg" alt="Adian Karol Hipsz" class="founder-img">
-          <div class="founder-info">
-            <p class="founder-label">FOUNDER</p>
-            <p class="founder-name">Adian Karol Hipsz</p>
-            <p class="founder-details">16 • Sweden</p>
-          </div>
-        </div>
+    <section class="hero">
+      <h1>HUSTLE<br>OVER<br><span style="color:var(--accent)">HYPE.</span></h1>
+      <div class="hero-meta">
+        <p>A response to the luxury of fitness.<br>Engineered for the unseen athlete.</p>
+        <p style="text-align: right; color: #111;">v1.0 / © 2025<br>CoreX Sweden</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="values" class="values-section">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="values-header">
-        <span class="section-tag">Why CoreX</span>
-        <h2 class="section-title">
-          What makes us <span class="accent">different</span>
-        </h2>
+    <section id="vision" class="manifesto">
+      <h2>The Gap in<br>the Market.</h2>
+      <div class="manifesto-text">
+        <p>My family <span class="highlight">didn't have a lot of money.</span></p>
+        <br>
+        <p>I wanted gear that was actually affordable but could handle a brutal session <span class="highlight">without the premium price tag.</span> I couldn't find it, so I built it.</p>
+        <br>
+        <p>That's why I created CoreX. We strip away the celebrity tax. You pay for the garment. Nothing else.</p>
       </div>
-      
-      <div class="values-grid">
-        <div class="card">
-          <h3 class="card-title">Actually Affordable</h3>
-          <p class="card-text">
-            No influencer tax. No middlemen markup. Just fair prices for quality gear.
-          </p>
-        </div>
-        
-        <div class="card">
-          <h3 class="card-title">Built to Last</h3>
-          <p class="card-text">
-            Every piece is tested and made to handle your toughest workouts.
-          </p>
-        </div>
-        
-        <div class="card">
-          <h3 class="card-title">Honest Quality</h3>
-          <p class="card-text">
-            No fake stories. No paid reviews. Just real gym wear from someone who trains.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="mission" class="mission-section">
-    <div class="max-w-4xl mx-auto text-center px-6">
-      <span class="section-tag">Mission</span>
-      
-      <h2 class="section-title">
-        Make quality gear <span class="accent">everyone</span> can afford
-      </h2>
-      
-      <p class="mission-text">
-        CoreX is setting a new standard where quality meets affordability, and hustle beats hype.
-      </p>
-      
-      <div class="stats-grid">
-        <div>
-          <div class="stat-number">100%</div>
-          <p class="stat-label">Quality First</p>
-        </div>
-        <div>
-          <div class="stat-number">2027</div>
-          <p class="stat-label">Launch Year</p>
-        </div>
-        <div>
-          <div class="stat-number">SE</div>
-          <p class="stat-label">Made in Sweden</p>
-        </div>
-      </div>
+    <div class="identity-block">
+      <div class="cx-logo">C<sup>X</sup></div>
+      <p>Affordability is the new elite.</p>
     </div>
-  </section>
 
-  <footer class="footer">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="footer-top">
-        <div>
-          <div class="logo">
-            CORE<sup class="accent">X</sup>
-          </div>
-          <p class="footer-tagline">
-            Hustle Over Hype • Made in Sweden
-          </p>
-        </div>
-        
-        <div class="footer-links">
-          <a href="#story">Story</a>
-          <a href="#values">Why CoreX</a>
-          <a href="#mission">Mission</a>
-        </div>
+    <footer>
+      <div>Adian Karol Hipsz / CoreX Wear</div>
+      <div style="display: flex; gap: 2rem;">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
       </div>
-      
-      <div class="footer-bottom">
-        <p>
-          © 2025 CoreX. Founded by Adian Karol Hipsz.
-        </p>
-        
-        <div class="social-links">
-          <a href="#">Instagram</a>
-          <a href="https://x.com/corexwear">Twitter</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
+  </div>
 
-  <script src="script.js"></script>
 </body>
 </html>
